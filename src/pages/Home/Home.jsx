@@ -1,8 +1,6 @@
 import React from "react";
-import style from './Home.modul.css'
+import styles from './Home.module.css'
 
 export const Home = () => {
-  return (
-    <div>1</div>
-  )
+  return <div>1</div>
 }

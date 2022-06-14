@@ -15,7 +15,8 @@ export const Login = () => {
       <h2>Login</h2>
       <label>
         <span>Email:</span>
-        <input type="email"
+        <input
+          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)} />
       </label>

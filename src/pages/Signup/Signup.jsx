@@ -18,20 +18,21 @@ export const Signup = () => {
       <h2>Signup</h2>
       <label>
         <span>Email:</span>
-        <input type="email"
+        <input
+          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)} />
       </label>
       <label>
         <span>Password:</span>
-        <input type="passworld"
+        <input type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)} />
       </label>
       <label>
         <span>Name:</span>
-        <input type="passworld"
-          value={password}
+        <input type="name"
+          value={name}
           onChange={(e) => setName(e.target.value)} />
       </label>
       {error && <p>{error}</p>}
