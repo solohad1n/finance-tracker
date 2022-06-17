@@ -24,9 +24,12 @@ export const Navbar = () => {
           </>
         )}
         {user && (
-          <li>
-            <button className='btn'>Logout</button>
-          </li>
+          <>
+            <li>hello, {user.name}</li>
+            <li>
+              <button className='btn'>Logout</button>
+            </li>
+          </>
         )}
       </ul>
     </nav>
