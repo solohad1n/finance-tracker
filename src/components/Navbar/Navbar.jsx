@@ -2,9 +2,11 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './Navbar.module.css';
 import { useAuthContext } from "../../Hooks/useAuthContext";
+import { useLogin } from '../../Hooks/useLogin';
 
 export const Navbar = () => {
   const { user } = useAuthContext()
+  const { logout } = useLogin()
 
   useEffect(() => {
     console.log(user)
@@ -27,7 +29,7 @@ export const Navbar = () => {
           <>
             <li>hello, {user.name}</li>
             <li>
-              <button className='btn'>Logout</button>
+              <button className='btn' onClick={logout}>Logout</button>
             </li>
           </>
         )}
