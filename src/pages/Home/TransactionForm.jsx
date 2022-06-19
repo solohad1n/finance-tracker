@@ -16,11 +16,13 @@ const TransactionForm = () => {
       <form onSubmit={handleSubmit}>
         <label>
           <span>Transaction name:</span>
-          <input type="text" required />
+          <input type="text" required value={name} onChange={e => setName(e.target.value)} />
         </label>
         <label>
           <span>Amount ($):</span>
-          <input type="text" required />
+          <input type="number" required
+            value={amount} onChange={e => setAmount(e.target.value)}
+          />
         </label>
         <button>Add Transaction</button>
       </form>
