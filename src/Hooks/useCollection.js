@@ -12,7 +12,23 @@ const initialState = {
 const firestoreReducer = (state, action) => {
   switch (action.type) {
     case 'IS_PENDING': {
-      return { ...state, isPending: action.payload }
+      return {
+        document: null,
+        isPending: true,
+        error: null,
+        success: null,
+      }
+    }
+    case 'ADDED_DOCUMENT': {
+      return {
+        isPending: false,
+        document: action.payload,
+        error: null,
+        success: true,
+      }
+    }
+    case 'ERROR': {
+      return { document: null, error: action.payload, isPending: false, success: false };
     }
     default:
       return state;
@@ -25,14 +41,14 @@ export const useCollection = () => {
 
   const collectionRef = collection(firestore, 'transactions')
 
+
   const addDocument = async (newDocument) => {
-    dispatch({ type: 'IS_PENDING', payload: true })
+    dispatch({ type: 'IS_PENDING' })
     try {
-      await addDoc(collectionRef, newDocument)
-      dispatch({ type: 'IS_PENDING', payload: false })
+      const addedDoc = await addDoc(collectionRef, newDocument)
+      dispatch({ type: 'ADDED_DOCUMENT', payload: addedDoc })
     } catch (err) {
-      console.log(err.message)
-      dispatch({ type: 'IS_PENDING', payload: false })
+      dispatch({ type: 'ERROR', payload: err.message })
     }
   }
 
@@ -44,5 +60,5 @@ export const useCollection = () => {
     return () => setIsCancelled(true)
   }, [])
 
-  return { addDocument, deleteDocument, isCancelled }
+  return { addDocument, deleteDocument, isCancelled, response }
 }
