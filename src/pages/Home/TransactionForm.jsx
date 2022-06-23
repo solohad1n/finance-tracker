@@ -1,14 +1,20 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { useCollection } from '../../Hooks/useCollection'
 
 const TransactionForm = () => {
   const [name, setName] = useState('')
   const [amount, setAmount] = useState('')
+  const { addDocument } = useCollection()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(name, amount)
+    await addDocument({
+      userId: 'awdawdwad',
+      title: name,
+      amount,
+      createdAt: new Date(),
+    })
   }
   return (
     <>
@@ -16,7 +22,11 @@ const TransactionForm = () => {
       <form onSubmit={handleSubmit}>
         <label>
           <span>Transaction name:</span>
-          <input type="text" required value={name} onChange={e => setName(e.target.value)} />
+          <input
+            type="text"
+            required value={name}
+            onChange={e => setName(e.target.value)}
+          />
         </label>
         <label>
           <span>Amount ($):</span>
